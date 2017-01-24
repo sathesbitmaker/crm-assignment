@@ -67,8 +67,11 @@ end
   # by specifying both the name of the attribute and the value
   # eg. searching for 'first_name', 'Betty' should return the first contact named Betty
   def self.find_by(attribute, value)
-    @@contacts.each do |attribute, value|
-      return contact if attribute == first_name &&  contact.first_name == value
+    @@contacts.each do |contact|
+      return contact if attribute == "first_name" &&  contact.first_name == value
+      return contact if attribute == "last_name" && contact.last_name == value
+      return contact if attribute == "email" && contact.email == value
+      return contact if attribute == "note" && contact.note == value
     end
   end
 
@@ -78,7 +81,7 @@ end
   end
 
   def full_name
-    "#{first-name}#{last_name}"
+    "#{first_name} #{last_name}"
   end
 
   # This method should delete the contact
