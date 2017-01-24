@@ -26,13 +26,14 @@ class CRM
 
   def call_option(user_selected)
     case user_selected
-    when 1 the add_a_new_contact
-    when 2 modify_an_existing_contact
-    when 3 delete_a_contact
-    when 4 display_all_the_contacts
-    when 5 search_by_attribute
-    when 6 abort ("exit")
+    when 1 then add_a_new_contact
+    when 2 then modify_an_existing_contact
+    when 3 then delete_a_contact
+    when 4 then display_all_the_contacts
+    when 5 then search_by_attribute
+    when 6 then abort ("exit")
 
+    end
   end
 
   def add_new_contact
@@ -57,14 +58,13 @@ class CRM
       return "I could not find a contact to modify"
     else
       puts "What would you like to change?"
-      puts "1. First Name"
-      puts "2. Last Name"
-      puts "3. Email"
-      puts "4. Note"
+      puts "[1] First Name"
+      puts "[2] Last Name"
+      puts "[3] Email"
+      puts "[4] Note"
       field = gets.chomp.to_i
       case field
-      when 1
-        puts "What is your first name?"
+      when 1 then puts "What is your first name?"
         first_new_name = gets.chomp
         contact.first_name = first_new_name
       when 2
@@ -80,6 +80,9 @@ class CRM
         note_new = gets.chomp
         contact.note= note_new
         end
+      end
+    end
+
 
   def delete_contact
     @@contacts.delete(self)
@@ -91,8 +94,17 @@ class CRM
   end
 
   def search_by_attribute
+    puts "What attribute would you like to search?"
+    puts "[1] First Name"
+    puts "[2] Last Name"
+    puts "[3] Email"
+    puts "[4] Note"
 
+    case user_selected
+ when 1 then puts "What is your first name?"
+   search_attr = Contact.find_by(:firstname)
+   puts "#{search_attr}"
+ end
   end
-
 
 end
